@@ -1,0 +1,128 @@
+{
+  "version": 1,
+  "projects": {
+    "essarhelth": {
+      "projectType": "application",
+      "root": "apps/essarhelth",
+      "sourceRoot": "apps/essarhelth/src",
+      "prefix": "essarhealth",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/essarhelth",
+            "index": "apps/essarhelth/src/index.html",
+            "main": "apps/essarhelth/src/main.ts",
+            "polyfills": "apps/essarhelth/src/polyfills.ts",
+            "tsConfig": "apps/essarhelth/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/essarhelth/src/favicon.ico",
+              "apps/essarhelth/src/assets"
+            ],
+            "styles": ["apps/essarhelth/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/essarhelth/src/environments/environment.ts",
+                  "with": "apps/essarhelth/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "essarhelth:build:production"
+            },
+            "development": {
+              "browserTarget": "essarhelth:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "essarhelth:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/essarhelth/src/**/*.ts",
+              "apps/essarhelth/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/essarhelth"],
+          "options": {
+            "jestConfig": "apps/essarhelth/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "essarhelth-e2e": {
+      "root": "apps/essarhelth-e2e",
+      "sourceRoot": "apps/essarhelth-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/essarhelth-e2e/cypress.json",
+            "devServerTarget": "essarhelth:serve:development",
+            "tsConfig": "apps/essarhelth-e2e/tsconfig.json"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "essarhelth:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/essarhelth-e2e/**/*.{js,ts}"]
+          }
+        }
+      },
+      "tags": [],
+      "implicitDependencies": ["essarhelth"]
+    }
+  }
+}
