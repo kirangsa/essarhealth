@@ -1,15 +1,82 @@
 {
+  "cli": {
+    "analytics": "34615770-eddb-4b0d-8de1-e26529ca6f13"
+  },
   "version": 1,
   "projects": {
+    "api": {
+      "root": "apps/api",
+      "sourceRoot": "apps/api/src",
+      "projectType": "application",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/apps/api",
+            "main": "apps/api/src/main.ts",
+            "tsConfig": "apps/api/tsconfig.app.json",
+            "assets": [
+              "apps/api/src/assets"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/api/src/environments/environment.ts",
+                  "with": "apps/api/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "api:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": [
+            "{options.outputFile}"
+          ],
+          "options": {
+            "lintFilePatterns": [
+              "apps/api/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/api"
+          ],
+          "options": {
+            "jestConfig": "apps/api/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
     "essarhelth": {
       "projectType": "application",
       "root": "apps/essarhelth",
       "sourceRoot": "apps/essarhelth/src",
-      "prefix": "essarhealth",
+      "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/essarhelth",
             "index": "apps/essarhelth/src/index.html",
@@ -21,7 +88,13 @@
               "apps/essarhelth/src/favicon.ico",
               "apps/essarhelth/src/assets"
             ],
-            "styles": ["apps/essarhelth/src/styles.scss"],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.carousel.min.css",
+              "./node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.theme.default.min.css",
+              "apps/essarhelth/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -30,7 +103,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumError": "2mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -59,6 +132,10 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "essarhelth:build:development",
+            "proxyConfig" : "apps/essarhelth/proxy.conf.json"
+          },
           "configurations": {
             "production": {
               "browserTarget": "essarhelth:build:production"
@@ -86,7 +163,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/essarhelth"],
+          "outputs": [
+            "coverage/apps/essarhelth"
+          ],
           "options": {
             "jestConfig": "apps/essarhelth/jest.config.js",
             "passWithNoTests": true
@@ -115,14 +194,20 @@
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
+          "outputs": [
+            "{options.outputFile}"
+          ],
           "options": {
-            "lintFilePatterns": ["apps/essarhelth-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/essarhelth-e2e/**/*.{js,ts}"
+            ]
           }
         }
       },
       "tags": [],
-      "implicitDependencies": ["essarhelth"]
+      "implicitDependencies": [
+        "essarhelth"
+      ]
     }
   }
 }

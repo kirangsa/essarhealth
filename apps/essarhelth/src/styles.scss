@@ -1,1 +1,196 @@
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+@import '~@angular/material/theming';
+@import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.css");
+
+@include mat-core();
+
+$md-primary: (50 : #e4f8ff,
+  100 : #bbedff,
+  200 : #8ee2ff,
+  300 : #63d6ff,
+  400 : #49cdfd,
+  500 : #006B80,
+  600 : #39b4e3,
+  700 : #2ca1c8,
+  800 : #208dae,
+  900 : #006b80,
+  A100 : #d4f1ff,
+  A200 : #8fbbcf,
+  A400 : #4f89a2,
+  A700 : #002b3c,
+  contrast: (50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #ffffff,
+    A400 : #ffffff,
+    A700 : #ffffff,
+  ));
+
+$md-accent: (50 : #e1f3f2,
+  100 : #b5e0de,
+  200 : #83ccc9,
+  300 : #51b8b3,
+  400 : #2ca8a2,
+  500 : #079992,
+  600 : #06918a,
+  700 : #05867f,
+  800 : #047c75,
+  900 : #026b63,
+  A100 : #9afff6,
+  A200 : #67fff2,
+  A400 : #34ffed,
+  A700 : #1affeb,
+  contrast: (50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  ));
+
+$primary: mat-palette($md-primary, 500);
+$accent: mat-palette($md-accent, 500);
+$warn: mat-palette($mat-red);
+$success: #78e08f;
+
+$theme: mat-light-theme($primary, $accent, $warn);
+
+@include angular-material-theme($theme);
+
+.btn-primary {
+  background: #da334d;
+  border: none;
+  text-transform: uppercase;
+  padding: 10px 40px;
+
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: #006B80;
+  }
+}
+
+.btn-outline-primary {
+  border-color: #da334d;
+  color: #da334d;
+  text-transform: uppercase;
+  font-size: 12px;
+
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: #006B80;
+    border-color: #006B80;
+  }
+}
+
+.mat-flat-button.mat-primary,
+.mat-raised-button.mat-primary,
+.mat-fab.mat-primary,
+.mat-mini-fab.mat-primary {
+  background: #da334d;
+  text-transform: uppercase;
+}
+
+.mat-button.mat-primary,
+.mat-icon-button.mat-primary,
+.mat-stroked-button.mat-primary {
+  border-color: #da334d;
+  color: #da334d;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+
+.sub-banner {
+  height: 300px;
+  overflow: hidden;
+  position: relative;
+  border-bottom: 1px solid #efecec;
+
+  @media (max-width: 768px) {
+    height: 200px;
+  }
+
+  &:before {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(180deg, #000 0%, transparent 100%);
+    opacity: 0.4;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+  }
+
+  .banner-fig {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+
+    img {
+      position: relative;
+      top: 0;
+      left: 50%;
+      display: block;
+      width: 100%;
+      height: 100%;
+      font-family: "object-fit: cover; object-position: 50% 50%;";
+      object-fit: cover;
+      transform: translateX(-50%)
+    }
+  }
+
+  .banner-text {
+    font-size: 3rem;
+    text-shadow: 1px 0px 4px #33333385;
+    text-transform: uppercase;
+    @media (max-width: 768px) {
+      font-size: 1.5rem;
+    }
+  }
+
+}
+
+.z-index-1 {
+  z-index: 1;
+}
+
+.text-justify{
+  text-align: justify;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

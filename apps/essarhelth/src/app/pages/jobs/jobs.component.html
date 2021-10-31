@@ -1,0 +1,198 @@
+<section class="sub-banner d-flex align-items-center">
+  <figure class="banner-fig">
+    <img
+      src="assets/img/banner2.svg"
+      alt="Nurse wearing a mask and face shied"
+    />
+  </figure>
+  <section class="position-relative container z-index-1">
+    <h1 class="text-light banner-text">JOBS/PROFESSION</h1>
+  </section>
+</section>
+
+<!-- ======= Featured Services Section ======= -->
+<section id="featured-services" class="featured-services pt-5">
+  <div class="container">
+    <div class="row pb-4">
+      <h3 class="text-center fs-4">Our Specialization</h3>
+    </div>
+    <div class="row">
+      <div
+        class="col-md-6 col-lg-4 d-flex align-items-stretch mb-5 pl-0 mb-lg-0"
+      >
+        <article class="icon-box">
+          <div class="icon">
+            <img src="assets/img/icon-nurse.svg" alt="" />
+          </div>
+          <h4 class="title">Nursing staffs</h4>
+          <p class="description">
+            ​We provide you with qualified and instructed nursing professionals
+            to foster you in the truest possible manner. We retain a broader
+            range of permitted practitioners to assist you according to the
+            condition of necessity. We have nurses specialised in various
+            departments/ domains of medical care to make avail proficient care
+            across the health sector. We recruit our health care professionals
+            to meet the need of the health care facilities and to mend the
+            shortage of adequate health care professionals in the domain.
+          </p>
+          <!-- <a mat-stroked-button color="primary" class="mt-4">Read More</a> -->
+        </article>
+      </div>
+
+      <div class="col-md-6 col-lg-4 d-flex align-items-stretch mb-5 mb-lg-0">
+        <article class="icon-box">
+          <div class="icon">
+            <img src="assets/img/icon-staff.svg" alt="" />
+          </div>
+          <h4 class="title">Health Care Staffing</h4>
+          <p class="description">
+            ​To reach out to your inadequate health staff, we offer you the best
+            and qualified health care professionals. We recruit and render our
+            faculty with trained professionals to meet your requirements across
+            the domain. From basic care crew to professionals, was have a team
+            of Certified staff to cater to your shortage. We have experienced
+            ambulance drivers to cleaning staff and caregivers to meet the
+            requirements.
+          </p>
+          <!-- <a mat-stroked-button color="primary" class="mt-4">Read More</a> -->
+        </article>
+      </div>
+
+      <div class="col-md-6 col-lg-4 d-flex align-items-stretch mb-5 mb-lg-0">
+        <article class="icon-box">
+          <div class="icon">
+            <img src="assets/img/icon-profession.svg" alt="" />
+          </div>
+          <h4 class="title">Professional Services</h4>
+          <p class="description">
+            We have the best professional care providers in the country. We
+            cater to your need, furnishing you with ample and sufficient care
+            personnel at reasonable costing. Taking the obligation of the
+            patient/ individual/ institution, we make avail utmost care and
+            safety to the concerned and needy. We even offer our own set of
+            training and practice sessions to our set of health staffing
+            personnel to meet the standard and professional skillsets.
+          </p>
+          <!-- <a mat-stroked-button color="primary" class="mt-4">Read More</a> -->
+        </article>
+      </div>
+
+      <div class="col-md-6 col-lg-4 d-flex align-items-stretch mb-5 mb-lg-0">
+        <article class="icon-box">
+          <div class="icon">
+            <img src="assets/img/icon-social.svg" alt="" />
+          </div>
+          <h4 class="title">HEALTHCARE ASSISTANTS</h4>
+          <p class="description">
+            If you are a qualified healthcare assistant checking local
+            opportunities or you want to do a flexible shift to balance your
+            work and life we are here for you to make the next step
+          </p>
+          <!-- <a mat-stroked-button color="primary" class="mt-4">Read More</a> -->
+        </article>
+      </div>
+
+      <div class="col-md-6 col-lg-4 d-flex align-items-stretch mb-5 mb-lg-0">
+        <article class="icon-box">
+          <div class="icon">
+            <img src="assets/img/icon-nursing-room.svg" alt="" />
+          </div>
+          <h4 class="title">RECRUITMENT</h4>
+          <p class="description">
+            Essar healthcare based in Ireland has international network of
+            recruitment consultants and candidate database. Our international
+            recruitment services can save your cost and retention. Our
+            international partners are who already assisting with the delivery
+            of professionals to HSE Ireland
+          </p>
+          <!-- <a mat-stroked-button color="primary" class="mt-4">Read More</a> -->
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Featured Services Section -->
+
+<section id="Jobs" class="jobs-wrapper py-5">
+  <div class="container">
+    <div class="row pb-4">
+      <h3 class="text-center fs-4 pb-3 border-bottom">Jobs</h3>
+      <div class="row">
+        <div class="col">
+          <ng-container *ngIf="jobs$ | async as jobs">
+            <div
+              *ngFor="let job of jobs | slice: 0:10; let last = last"
+              class="row pt-2"
+            >
+              <div class="col-12 title py-2 fs-7">{{ job.title }}</div>
+              <div class="row">
+                <div class="col-md-9">
+                  <p class="mb-2">
+                    {{ job.shortDescription }}
+                  </p>
+                  <p class="mb-2">
+                    {{ job.description }}
+                  </p>
+                  <ul
+                    class="
+                      list-inline
+                      col-md
+                      d-flex
+                      flex-md-row flex-column
+                      align-self-center
+                      text-md-left
+                      mb-2
+                    "
+                  >
+                    <li
+                      class="
+                        list-inline-item
+                        d-flex
+                        align-items-center
+                        flex-row
+                      "
+                    >
+                      <i class="bi bi-geo-alt-fill fs-5"></i
+                      ><span class="ps-2">Location : {{ job.location }}</span>
+                    </li>
+                    <li
+                      class="
+                        list-inline-item
+                        d-flex
+                        align-items-center
+                        flex-row
+                      "
+                    >
+                      <i class="bi bi-currency-pound fs-5"></i>
+                      <span class="ps-2">Salary :{{ job.salary }}</span>
+                    </li>
+                  </ul>
+                </div>
+                <div
+                  class="
+                    col-md-3
+                    d-flex
+                    align-items-center
+                    justify-content-md-center
+                  "
+                >
+                  <a
+                    role="button"
+                    [routerLink]="['/jobs/job', this.job.id]"
+                    mat-stroked-button
+                    color="primary"
+                  >
+                    Read More / Apply
+                  </a>
+                </div>
+                <div [hidden]="last" class="mt-2">
+                  <div class="dotted-border"></div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,44 @@
+<section class="d-flex banner">
+  <figure class="banner-fig">
+    <img
+      src="assets/img/banner.svg"
+      alt="Nurse wearing a mask and face shied"
+    />
+  </figure>
+  <div class="container d-flex position-relative z-index-1">
+    <div class="row gx-5 d-flex justify-content-between">
+      <div class="col-lg-6">
+        <div class="p-3">
+        <h1 class="hero-text-1 mt-5">Dignified Health Sector Jobs in Ireland!</h1>
+        <p class="hero-text-2 fs-5">
+          We are endeavouring to become one of the most prominent health care proficient suppliers in and around Ireland.
+        </p>
+        <button
+          mat-raised-button
+          class="btn-lg px-4 py-1"
+          color="primary"
+          (click)="joinUs()"
+        >
+          Join Us
+        </button>
+      </div>
+      </div>
+      <div class="col-lg-5 d-flex align-items-end">
+        <div class="banner-right-container px-3 py-3 px-lg-5 py-lg-5 mt-2">
+          <h2 class="hero-text-1 fs-1 text-dark">Need a staff ?</h2>
+          <p class="fs-6">
+            If you need a professionally competent health care professional to handle your precise requirement, we are hereby to procure you with promising care providers.
+          </p>
+          <button
+            mat-raised-button
+            class="btn-lg px-4 py-1"
+            (click)="request()"
+            color="primary"
+          >
+            REquest Now
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

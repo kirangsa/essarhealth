@@ -1,0 +1,60 @@
+
+
+/*--------------------------------------------------------------
+# Featured Services
+--------------------------------------------------------------*/
+
+// .featured-services{
+//   background: #F6F8F9;
+// }
+.featured-services .icon-box {
+  padding: 30px;
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 0 29px 0 rgba(68, 88, 144, 0.12);
+  transition: all 0.3s ease-in-out;
+  border-radius: 8px;
+  text-align: center;
+  z-index: 1;
+  margin-bottom: 15px;
+
+  img{
+    width: 100px;
+    height: 100px;
+  }
+}
+
+.featured-services .icon {
+  margin-bottom: 15px;
+}
+
+.featured-services .icon i {
+  font-size: 48px;
+  line-height: 1;
+  color: #106eea;
+  transition: all 0.3s ease-in-out;
+}
+
+.featured-services .title {
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+.featured-services .description {
+  font-size: 13px;
+  margin-bottom: 0;
+}
+
+.title {
+  color: #da334d;
+}
+
+.dotted-border{
+  border-bottom: 1px dashed #33333324;
+}
+
+.jobs-wrapper{
+  background: #fdfdfd;
+}
+

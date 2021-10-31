@@ -1,0 +1,72 @@
+<section class="sub-banner d-flex align-items-center">
+  <figure class="banner-fig">
+    <img
+      src="assets/img/banner2.svg"
+      alt="Nurse wearing a mask and face shied"
+    />
+  </figure>
+  <section class="position-relative container z-index-1">
+    <h1 class="text-light banner-text">JOB Description</h1>
+  </section>
+</section>
+
+<section class="container">
+  <div class="row py-5" *ngIf="jobsSub$ | async as job">
+    <div class="col-md-8">
+      <div class="card p-3">
+        <header class="header">
+          <h2 class="card-title mb-1">{{ job.title }}</h2>
+          <p class="card-subtitle mb-3 text-muted">
+            {{ job.shortDescription }}
+          </p>
+          <div class="row">
+            <div class="col-md-8">
+              <ul class="list-unstyled text-muted">
+                <li>Profession : {{ job.profession }}</li>
+                <li>Location : {{ job.location }}</li>
+                <li>Salary : {{ job.salary }}</li>
+                <li>Contract Type: {{ job.contractType }}</li>
+              </ul>
+            </div>
+            <div
+              class="col-md-4 d-flex justify-content-center align-items-center"
+            >
+              <button
+                mat-raised-button
+                color="primary"
+                type="submit"
+                (click)="joinUs(job)"
+                class="button"
+              >
+                Apply
+              </button>
+            </div>
+          </div>
+        </header>
+        <div class="border-bottom"></div>
+        <article class="py-5 px-3">
+          <p>{{ job.description }}</p>
+          <h3>Requirements</h3>
+          <ul>
+            <li *ngFor="let item of job?.requirements">
+              {{ item }}
+            </li>
+          </ul>
+
+          <h3>Benefits</h3>
+          <ul>
+            <li *ngFor="let item of job?.roles">
+              {{ item }}
+            </li>
+          </ul>
+        </article>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card p-3">
+      <app-refer-friend></app-refer-friend>
+
+      </div>
+    </div>
+  </div>
+</section>

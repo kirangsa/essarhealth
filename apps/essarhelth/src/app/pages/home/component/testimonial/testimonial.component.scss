@@ -1,0 +1,57 @@
+.testimonial {
+  .box-wrapper{
+    padding: 70px 30px 30px 30px;
+  }
+  .box {
+    padding: 30px;
+    position: relative;
+    background: #fff;
+    box-shadow: 0 0 29px 0 rgba(68, 88, 144, 0.12);
+    transition: all 0.3s ease-in-out;
+    border-radius: 8px;
+    text-align: center;
+    z-index: 1;
+  }
+  .profile{
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    background: #FFF;
+    border-radius: 50%;
+    box-shadow: 0 0 29px 0 rgba(68, 88, 144, 0.12);
+    top:0px;
+    left:50%;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+    border: #3333;
+
+    img{
+      max-height: 100%;
+      max-width: 100%;
+      min-width: 100%;
+    }
+
+  }
+}
+
+owl-carousel-o {
+  position: relative;
+  height: auto;
+  width: 100%;
+  display: block;
+}
+
+.owl-item {
+  height: 300px;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 50%;
+}
+
+.quote{
+  display: initial !important;
+  height: auto !important;
+  width: auto !important;
+}
+

@@ -1,0 +1,57 @@
+<button mat-icon-button class="close-button" [mat-dialog-close]="true" aria>
+  <mat-icon class="close-icon" color="warn">close</mat-icon>
+</button>
+
+<div mat-dialog-title>
+  <h2 class="fs-3 mb-2 border-bottom">Need a nurse now</h2>
+  <p class="fs-6 fw-light">Please complete the form below and we'll get back to you right away:</p>
+</div>
+
+<mat-dialog-content class="mat-typography">
+  <div class="container"  novalidate>
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)" class="form">
+
+      <mat-form-field class="form-element">
+        <input matInput cdkFocusInitial placeholder="First Name" formControlName="firstName">
+        <mat-error *ngIf="!formGroup.controls['firstName'].valid && formGroup.controls['firstName'].touched">
+          {{ titleAlert }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Last Name" formControlName="lastName">
+        <mat-error *ngIf="!formGroup.controls['lastName'].valid && formGroup.controls['lastName'].touched">
+          {{ titleAlert }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Emailaddress" formControlName="email">
+        <mat-error *ngIf="!formGroup.controls['email'].valid && formGroup.controls['email'].touched">
+          {{ getErrorEmail() }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Phone" formControlName="phone">
+        <mat-error *ngIf="!formGroup.controls['phone'].valid && formGroup.controls['phone'].touched">
+          {{ titleAlert }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-element">
+        <textarea matInput placeholder="Requirements" [matTextareaAutosize]="true" [matAutosizeMinRows]=5 [matAutosizeMaxRows]=5 formControlName="description"></textarea>
+        <mat-error *ngIf="!formGroup.controls['description'].valid && formGroup.controls['description'].touched">
+          Required field, must be between 10 and 500 characters.
+        </mat-error>
+      </mat-form-field>
+
+
+
+      <div class="form-element">
+        <button mat-raised-button color="primary" type="submit" class="button" >Submit Form</button>
+      </div>
+
+    </form>
+  </div>
+</mat-dialog-content>

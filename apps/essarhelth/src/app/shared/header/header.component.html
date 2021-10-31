@@ -1,0 +1,84 @@
+<!-- ======= Header ======= -->
+<header id="header" class="d-flex align-items-center fixed-top">
+  <div class="container d-flex align-items-center justify-content-between">
+    <!-- <h1 class="logo"><a href="index.html"><span>.</span></a></h1> -->
+    <!-- Uncomment below if you prefer to use an image logo -->
+    <a href="index.html" class="logo"
+      ><img src="assets/img/logo.svg" alt=""
+    /></a>
+
+    <nav id="navbar" class="navbar" [class.navbar-mobile]="isMobNavVisible">
+      <ul>
+        <li>
+          <a
+            class="nav-link"
+            routerLink="/home"
+            routerLinkActive="active"
+            (click)="isMobNavVisible = false"
+            #menuItem1="routerLinkActive"
+            [attr.aria-current]="menuItem1.isActive ? 'page' : undefined"
+            >HOME</a
+          >
+        </li>
+        <li>
+          <a
+            class="nav-link"
+            routerLink="/jobs"
+            routerLinkActive="active"
+            #menuItem2="routerLinkActive"
+            (click)="isMobNavVisible = false"
+            [attr.aria-current]="menuItem2.isActive ? 'page' : undefined"
+            >JOBS/PROFESSION
+          </a>
+        </li>
+        <li>
+          <a
+            class="nav-link"
+            routerLink="/recruitment"
+            routerLinkActive="active"
+            #menuItem3="routerLinkActive"
+            [attr.aria-current]="menuItem3.isActive ? 'page' : undefined"
+            >RECRUITMENT</a
+          >
+        </li>
+        <li>
+          <a
+            class="nav-link"
+            routerLink="/e-learning"
+            routerLinkActive="active"
+            #menuItem4="routerLinkActive"
+            [attr.aria-current]="menuItem4.isActive ? 'page' : undefined"
+            >E-LEARNING
+          </a>
+        </li>
+        <li>
+          <a
+            class="nav-link"
+            routerLink="/about-us"
+            routerLinkActive="active"
+            #menuItem5="routerLinkActive"
+            [attr.aria-current]="menuItem5.isActive ? 'page' : undefined"
+            >ABOUT US
+          </a>
+        </li>
+        <li>
+          <a
+            class="nav-link"
+            routerLink="/contact-us"
+            routerLinkActive="active"
+            #menuItem6="routerLinkActive"
+            [attr.aria-current]="menuItem6.isActive ? 'page' : undefined"
+            >CONTACT US</a
+          >
+        </li>
+      </ul>
+      <i
+        class="bi mobile-nav-toggle"
+        [ngClass]="isMobNavVisible ? 'bi-x' : 'bi-list'"
+        (click)="toggleMobileNav()"
+      ></i>
+    </nav>
+    <!-- .navbar -->
+  </div>
+</header>
+<!-- End Header -->

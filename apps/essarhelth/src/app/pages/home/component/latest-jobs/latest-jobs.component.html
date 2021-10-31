@@ -1,0 +1,50 @@
+<section>
+  <div class="container py-5">
+    <div class="row">
+      <div class="col-lg-8 mb-3">
+        <h3 class="text-dark mb-2">Latest Jobs</h3>
+        <div class="border-bottom"></div>
+        <ng-container *ngIf="jobs$ | async as jobs">
+          <div *ngFor="let job of jobs | slice: 0:3 ;  let last = last" class="row pt-2">
+            <div class="col-12 title py-2 fs-7">{{ job.title }}</div>
+            <div class="row">
+            <div class="col-md-9">
+              <p class="mb-2">
+                {{ job.shortDescription }}
+              </p>
+              <ul class="list-inline d-flex flex-row mb-2">
+                <li class="list-inline-item d-flex align-items-center flex-row">
+                  <i class="bi bi-geo-alt-fill fs-5"></i
+                  ><span class="ps-2">Location : {{ job.location }}</span>
+                </li>
+                <li class="list-inline-item d-flex align-items-center flex-row">
+                  <i class="bi bi-currency-pound fs-5"></i>
+                  <span class="ps-2">Salary : {{ job.salary }}</span>
+                </li>
+              </ul>
+            </div>
+            <div
+              class="
+                col-md-3
+                d-flex
+                align-items-center
+                justify-content-md-center
+              "
+            >
+              <a role="button" class="my-2" [routerLink]="['/jobs/job', this.job.id]"  mat-stroked-button color="primary">
+                Read More / Apply
+              </a>
+            </div>
+            <div [hidden]="last" class="mt-2">
+              <div class="dotted-border"></div>
+            </div>
+          </div>
+          </div>
+        </ng-container>
+      </div>
+      <div class="col-lg-4">
+        <app-refer-friend></app-refer-friend>
+      </div>
+    </div>
+  </div>
+</section>

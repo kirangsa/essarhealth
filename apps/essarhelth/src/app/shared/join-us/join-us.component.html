@@ -1,0 +1,159 @@
+<button mat-icon-button class="close-button" [mat-dialog-close]="true" aria>
+  <mat-icon class="close-icon" color="warn">close</mat-icon>
+</button>
+<div mat-dialog-title>
+  <h2 class="fs-3 pb-2 border-bottom">
+    <ng-container *ngIf="data; else JoinUS"> Apply Now </ng-container>
+    <ng-template #JoinUS> Join Us </ng-template>
+  </h2>
+
+  <!-- <p class="fs-6 fw-light">If you need a nurse now, please complete the form below and we’ll get back to you right away:</p> -->
+</div>
+
+<mat-dialog-content class="mat-typography">
+  <ng-container *ngIf="data">
+    <div class="card p-3 mb-2">
+      <h4 class="title mb-1">{{ data.title }}</h4>
+      <div class="col">
+        <ul class="list-inline d-flex flex-row mb-2">
+          <li class="list-inline-item d-flex align-items-center flex-row">
+            <i class="bi bi-geo-alt-fill fs-5"></i
+            ><span class="ps-2">Location : {{ data.location }}</span>
+          </li>
+          <li class="list-inline-item d-flex align-items-center flex-row">
+            <i class="bi bi-currency-pound fs-5"></i>
+            <span class="ps-2">Salary : {{ data.salary }}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </ng-container>
+  <div class="container" novalidate>
+    <form
+      [formGroup]="formGroup"
+      (ngSubmit)="onSubmit(formGroup.value)"
+      class="form"
+    >
+      <mat-form-field class="form-element">
+        <input
+          matInput
+          placeholder="First Name"
+          formControlName="firstName"
+          autofocus
+          cdkFocusInitial
+          tabindex="0"
+        />
+        <mat-error
+          *ngIf="
+            !formGroup.controls['firstName'].valid &&
+            formGroup.controls['firstName'].touched
+          "
+        >
+          {{ titleAlert }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Last Name" formControlName="lastName" />
+        <mat-error
+          *ngIf="
+            !formGroup.controls['lastName'].valid &&
+            formGroup.controls['lastName'].touched
+          "
+        >
+          {{ titleAlert }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Email address" formControlName="email" />
+        <mat-error
+          *ngIf="
+            !formGroup.controls['email'].valid &&
+            formGroup.controls['email'].touched
+          "
+        >
+          {{ getErrorEmail() }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Phone" formControlName="phone" />
+        <mat-error
+          *ngIf="
+            !formGroup.controls['phone'].valid &&
+            formGroup.controls['phone'].touched
+          "
+        >
+          {{ titleAlert }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-element">
+        <mat-label>Location</mat-label>
+        <mat-select formControlName="location">
+          <mat-option *ngFor="let item of location" [value]="item">{{
+            item
+          }}</mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="
+            !formGroup.controls['location'].valid &&
+            formGroup.controls['location'].touched
+          "
+        >
+          {{ titleAlert }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-element">
+        <mat-label>Locum / Permanent</mat-label>
+        <mat-select formControlName="locum">
+          <mat-option *ngFor="let option of contractType" [value]="option">{{
+            option
+          }}</mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="
+            !formGroup.controls['locum'].valid &&
+            formGroup.controls['locum'].touched
+          "
+        >
+          {{ titleAlert }}
+        </mat-error>
+      </mat-form-field>
+
+      <div class="form-group">
+        <app-file-upload
+          formControlName="cv"
+          [progress]="progress"
+        ></app-file-upload>
+        <div class="invalid-feedback" style="display: block">
+          <mat-error
+            *ngIf="
+              !formGroup.controls['cv'].valid &&
+              formGroup.controls['cv'].touched
+            "
+          >
+            {{ titleAlert }}
+          </mat-error>
+          <!-- <ng-container *ngIf="hasError('image', 'required')">This field is required</ng-container>
+          <ng-container *ngIf="hasError('image', 'requiredFileType')">Only PNG 🤡</ng-container> -->
+        </div>
+      </div>
+
+      <div class="form-element">
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          class="button"
+
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+</mat-dialog-content>
