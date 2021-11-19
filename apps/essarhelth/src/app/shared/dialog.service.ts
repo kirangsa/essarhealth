@@ -1,3 +1,4 @@
+import { ReferComponent } from './refer/refer.component';
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Job } from '../core/interfaces/job.inteface';
@@ -22,6 +23,13 @@ export class DialogService {
     const dialogRef = this.dialog.open(JoinUsComponent, {
       data : job
     });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  showRefer(){
+    const dialogRef = this.dialog.open(ReferComponent);
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });

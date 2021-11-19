@@ -1,3 +1,5 @@
+import { MatDialog } from '@angular/material/dialog';
+import { HttpClient } from '@angular/common/http';
 
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormControlName, FormGroup, Validators } from '@angular/forms';
@@ -16,7 +18,7 @@ export class StaffRequestComponent implements OnInit {
   titleAlert: string = 'This field is required';
   post: any = '';
 
-  constructor(private formBuilder: FormBuilder, private httpService : HttpService) {
+  constructor(private formBuilder: FormBuilder, private httpService: HttpService, private http: HttpClient, public dialog: MatDialog) {
     this.formGroup = this.createForm();
   }
 
@@ -27,8 +29,8 @@ export class StaffRequestComponent implements OnInit {
   createForm() {
     let emailregex: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     const formGroup = this.formBuilder.group({
-      'firstName' : [null, Validators.required],
-      'lastName' : [null, Validators.required],
+      'firstName': [null, Validators.required],
+      'lastName': [null, Validators.required],
       'email': [null, [Validators.required, Validators.pattern(emailregex)]],
       'phone': [null, Validators.required],
       'description': [null, [Validators.required, Validators.minLength(10)]],
@@ -46,11 +48,9 @@ export class StaffRequestComponent implements OnInit {
   }
 
 
-  onSubmit(data:any) {
-    const url= environment.api_url+'/staffRequest';
-    this.httpService.post(url,data).subscribe(x => {
-      console.log(x);
-    })
+  onSubmit(data: any) { this.http.post('/staffRequest.php', data)
+      .subscribe( data => this.dialog.closeAll())
   }
+
 
 }

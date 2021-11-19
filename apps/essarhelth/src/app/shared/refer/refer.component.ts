@@ -1,4 +1,4 @@
-import { environment } from './../../../environments/environment';
+import { environment } from '../../../environments/environment';
 import { HttpEvent, HttpEventType, HttpProgressEvent, HttpClient } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormControlName, FormGroup, Validators } from '@angular/forms';
@@ -28,11 +28,11 @@ export function toResponseBody<T>() {
 
 
 @Component({
-  selector: 'app-join-us',
-  templateUrl: './join-us.component.html',
-  styleUrls: ['./join-us.component.scss']
+  selector: 'app-refer',
+  templateUrl: './refer.component.html',
+  styleUrls: ['./refer.component.scss']
 })
-export class JoinUsComponent implements OnInit {
+export class ReferComponent implements OnInit {
 
   formGroup: FormGroup;
   titleAlert: string = 'This field is required';
@@ -69,7 +69,7 @@ export class JoinUsComponent implements OnInit {
   ]
   contractType: string[] = ["Locum", "Permanent",]
 
-  constructor(private formBuilder: FormBuilder, public dialogRef: MatDialogRef<JoinUsComponent>,
+  constructor(private formBuilder: FormBuilder, public dialogRef: MatDialogRef<ReferComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Job, public httpService: HttpService, private http: HttpClient, private dialog: MatDialog, private _snackBar: MatSnackBar) {
     this.formGroup = this.createForm();
 
@@ -83,11 +83,13 @@ export class JoinUsComponent implements OnInit {
 
   }
 
-
-
   createForm() {
     let emailregex: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     const formGroup = this.formBuilder.group({
+      'ref_user_firstName': [null, Validators.required],
+      'ref_user_lastName': [null, Validators.required],
+      'ref_user_email': [null, [Validators.required, Validators.pattern(emailregex)]],
+      'ref_user_phone': [null, Validators.required],
       'cand_user_firstName': [null, Validators.required],
       'cand_user_lastName': [null, Validators.required],
       'cand_user_email': [null, [Validators.required, Validators.pattern(emailregex)]],
@@ -99,10 +101,11 @@ export class JoinUsComponent implements OnInit {
     return formGroup;
   }
 
-  getErrorEmail() {
-    return this.formGroup.get('cand_user_email')!.hasError('required') ? 'Field is required' :
-      this.formGroup.get('cand_user_email')!.hasError('pattern') ? 'Not a valid email address' : ""
+  getErrorEmail(field: string) {
+    return this.formGroup.get(field)!.hasError('required') ? 'Field is required' :
+      this.formGroup.get(field)!.hasError('pattern') ? 'Not a valid email address' : ""
   }
+
 
   public checkError = (controlName: string, errorName: string) => {
     return this.formGroup.controls[controlName].hasError(errorName);
@@ -117,21 +120,14 @@ export class JoinUsComponent implements OnInit {
 
 
   onSubmit(data: any) {
-    const url = environment.api_url + 'referal-service/joinus';
+    const url = environment.aws_url + 'referal-service/joinus';
     const formData = this.toFormData(data);
     console.log(this.toFormData(data))
-    const options = {
-      headers: {
-        'content-type': 'multipart/form-data'
-      }
-    }
-
-
-    this.http.post(url, formData, options)
-      .subscribe(
-        data => (this.dialog.closeAll(),
-          this._snackBar.open('Successfully submitted your request!')),
-        error => this._snackBar.open('Something went wrong!')
+    this.http.post(url, formData)
+    .subscribe(
+      data => (this.dialog.closeAll(),
+        this._snackBar.open('Successfully submitted your request!')),
+      error => this._snackBar.open('Something went wrong!')
       );
   }
 

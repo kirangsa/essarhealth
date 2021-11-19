@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  api_url : "http://localhost:3000/api"
+  api_url : "https://d1ccp9q8gngj7e.cloudfront.net/essarhealthcare/",
+  aws_url : "https://d1ccp9q8gngj7e.cloudfront.net/essarhealthcare/"
 };
 
 /*

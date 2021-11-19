@@ -1,3 +1,4 @@
+import { ReferComponent } from './shared/refer/refer.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -7,6 +8,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
+import {MatCardModule} from '@angular/material/card';
+
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -26,6 +29,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { BannerComponent } from './pages/home/component/banner/banner.component';
 import { HttpService } from './core/services/data.service';
 import { HttpClientModule } from '@angular/common/http';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +44,7 @@ import { HttpClientModule } from '@angular/common/http';
     JoinUsComponent,
     FileUploadComponent,
     ProgressComponent,
+    ReferComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,10 +57,11 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     MatIconModule,
     MatSelectModule,
+    MatCardModule,
     SharedModule,
     CarouselModule
   ],
-  providers: [],
+  providers: [MatSnackBar],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

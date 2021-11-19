@@ -39,15 +39,15 @@
         <input
           matInput
           placeholder="First Name"
-          formControlName="firstName"
+          formControlName="cand_user_firstName"
           autofocus
           cdkFocusInitial
           tabindex="0"
         />
         <mat-error
           *ngIf="
-            !formGroup.controls['firstName'].valid &&
-            formGroup.controls['firstName'].touched
+            !formGroup.controls['cand_user_firstName'].valid &&
+            formGroup.controls['cand_user_firstName'].touched
           "
         >
           {{ titleAlert }}
@@ -55,11 +55,11 @@
       </mat-form-field>
 
       <mat-form-field class="form-element">
-        <input matInput placeholder="Last Name" formControlName="lastName" />
+        <input matInput placeholder="Last Name" formControlName="cand_user_lastName" />
         <mat-error
           *ngIf="
-            !formGroup.controls['lastName'].valid &&
-            formGroup.controls['lastName'].touched
+            !formGroup.controls['cand_user_lastName'].valid &&
+            formGroup.controls['cand_user_lastName'].touched
           "
         >
           {{ titleAlert }}
@@ -67,11 +67,11 @@
       </mat-form-field>
 
       <mat-form-field class="form-element">
-        <input matInput placeholder="Email address" formControlName="email" />
+        <input matInput placeholder="Email address" formControlName="cand_user_email" />
         <mat-error
           *ngIf="
-            !formGroup.controls['email'].valid &&
-            formGroup.controls['email'].touched
+            !formGroup.controls['cand_user_email'].valid &&
+            formGroup.controls['cand_user_email'].touched
           "
         >
           {{ getErrorEmail() }}
@@ -79,11 +79,11 @@
       </mat-form-field>
 
       <mat-form-field class="form-element">
-        <input matInput placeholder="Phone" formControlName="phone" />
+        <input matInput placeholder="Phone" formControlName="cand_user_phone" />
         <mat-error
           *ngIf="
-            !formGroup.controls['phone'].valid &&
-            formGroup.controls['phone'].touched
+            !formGroup.controls['cand_user_phone'].valid &&
+            formGroup.controls['cand_user_phone'].touched
           "
         >
           {{ titleAlert }}
@@ -92,15 +92,15 @@
 
       <mat-form-field class="form-element">
         <mat-label>Location</mat-label>
-        <mat-select formControlName="location">
+        <mat-select formControlName="cand_user_location">
           <mat-option *ngFor="let item of location" [value]="item">{{
             item
           }}</mat-option>
         </mat-select>
         <mat-error
           *ngIf="
-            !formGroup.controls['location'].valid &&
-            formGroup.controls['location'].touched
+            !formGroup.controls['cand_user_location'].valid &&
+            formGroup.controls['cand_user_location'].touched
           "
         >
           {{ titleAlert }}
@@ -109,15 +109,15 @@
 
       <mat-form-field class="form-element">
         <mat-label>Locum / Permanent</mat-label>
-        <mat-select formControlName="locum">
+        <mat-select formControlName="cand_user_profession">
           <mat-option *ngFor="let option of contractType" [value]="option">{{
             option
           }}</mat-option>
         </mat-select>
         <mat-error
           *ngIf="
-            !formGroup.controls['locum'].valid &&
-            formGroup.controls['locum'].touched
+            !formGroup.controls['cand_user_profession'].valid &&
+            formGroup.controls['cand_user_profession'].touched
           "
         >
           {{ titleAlert }}
@@ -126,14 +126,14 @@
 
       <div class="form-group">
         <app-file-upload
-          formControlName="cv"
+          formControlName="file"
           [progress]="progress"
         ></app-file-upload>
         <div class="invalid-feedback" style="display: block">
           <mat-error
             *ngIf="
-              !formGroup.controls['cv'].valid &&
-              formGroup.controls['cv'].touched
+              !formGroup.controls['file'].valid &&
+              formGroup.controls['file'].touched
             "
           >
             {{ titleAlert }}
@@ -149,7 +149,7 @@
           color="primary"
           type="submit"
           class="button"
-
+          [disabled]="!formGroup.valid"
         >
           Submit
         </button>

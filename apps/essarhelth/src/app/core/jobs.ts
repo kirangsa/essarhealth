@@ -21,7 +21,7 @@ export const JOBS: Job[] = [
     location: "Dublin",
     contractType: "Full-time, Permanent",
     date: "16th Sep, 2021",
-    profession: "Audiology",
+    profession: "Staff Nurse",
     salary: "€30,609.00-€46,021.00 per year"
   },
   {
@@ -44,7 +44,7 @@ export const JOBS: Job[] = [
     location: "Dublin",
     contractType: "Full-time, Permanent",
     date: "16th Sep, 2021",
-    profession: "Audiology",
+    profession: "Staff Nurse",
     salary: "€30,609.00-€46,021.00 per year"
   },
   {
@@ -67,7 +67,7 @@ export const JOBS: Job[] = [
     location: "Dublin",
     contractType: "Full-time, Permanent",
     date: "16th Sep, 2021",
-    profession: "Audiology",
+    profession: "Staff Nurse",
     salary: "€30,609.00-€46,021.00 per year"
   }
 ]

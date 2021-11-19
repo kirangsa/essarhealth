@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { DialogService } from '../dialog.service';
 
 @Component({
   selector: 'app-refer-friend',
@@ -8,9 +9,13 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 })
 export class ReferFriendComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialogService: DialogService) { }
 
   ngOnInit(): void {
+  }
+
+  refer(){
+    this.dialogService.showRefer();
   }
 
 }
