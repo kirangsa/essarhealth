@@ -40,8 +40,8 @@
       </mat-form-field>
 
       <mat-form-field class="form-element">
-        <textarea matInput placeholder="Requirements" [matTextareaAutosize]="true" [matAutosizeMinRows]=5 [matAutosizeMaxRows]=5 formControlName="description"></textarea>
-        <mat-error *ngIf="!formGroup.controls['description'].valid && formGroup.controls['description'].touched">
+        <textarea matInput placeholder="Requirements" [matTextareaAutosize]="true" [matAutosizeMinRows]=5 [matAutosizeMaxRows]=5 formControlName="requirements"></textarea>
+        <mat-error *ngIf="!formGroup.controls['requirements'].valid && formGroup.controls['requirements'].touched">
           Required field, must be between 10 and 500 characters.
         </mat-error>
       </mat-form-field>

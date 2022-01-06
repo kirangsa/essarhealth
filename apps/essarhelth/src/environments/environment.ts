@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  api_url : "https://d1ccp9q8gngj7e.cloudfront.net/essarhealthcare/",
-  aws_url : "https://d1ccp9q8gngj7e.cloudfront.net/essarhealthcare/"
+  api_url : "http://emailservice-env.eba-cbfvh7e6.ap-south-1.elasticbeanstalk.com/ehc/referral-service/",
+  aws_url : "http://emailservice-env.eba-cbfvh7e6.ap-south-1.elasticbeanstalk.com/ehc/referral-service/"
 };
 
 /*

@@ -1,11 +1,14 @@
-import { MatDialog } from '@angular/material/dialog';
+import { ReferComponent } from './../refer/refer.component';
+import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormControl, FormControlName, FormGroup, Validators } from '@angular/forms';
 import { environment } from 'apps/essarhelth/src/environments/environment';
 import { Observable } from 'rxjs';
 import { HttpService } from '../../core/services/data.service';
+import { Job } from '../../core/interfaces/job.inteface';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-staff-request',
@@ -18,8 +21,10 @@ export class StaffRequestComponent implements OnInit {
   titleAlert: string = 'This field is required';
   post: any = '';
 
-  constructor(private formBuilder: FormBuilder, private httpService: HttpService, private http: HttpClient, public dialog: MatDialog) {
+  constructor(private formBuilder: FormBuilder, public dialogRef: MatDialogRef<ReferComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: Job, public httpService: HttpService, private http: HttpClient, private dialog: MatDialog, private _snackBar: MatSnackBar) {
     this.formGroup = this.createForm();
+
   }
 
   ngOnInit() {
@@ -33,7 +38,7 @@ export class StaffRequestComponent implements OnInit {
       'lastName': [null, Validators.required],
       'email': [null, [Validators.required, Validators.pattern(emailregex)]],
       'phone': [null, Validators.required],
-      'description': [null, [Validators.required, Validators.minLength(10)]],
+      'requirements': [null, [Validators.required, Validators.minLength(10)]],
     });
     return formGroup;
   }
@@ -48,8 +53,19 @@ export class StaffRequestComponent implements OnInit {
   }
 
 
-  onSubmit(data: any) { this.http.post('/staffRequest.php', data)
-      .subscribe( data => this.dialog.closeAll())
+  // onSubmit(data: any) { this.http.post('/staffRequest.php', data)
+  //     .subscribe( data => this.dialog.closeAll())
+  // }
+
+  onSubmit(data: any) {
+    const url = environment.aws_url + 'need-nurse';
+
+    this.http.post(url, data)
+    .subscribe(
+      data => (this.dialog.closeAll(),
+        this._snackBar.open('Successfully submitted your request!')),
+      error => this._snackBar.open('Something went wrong!')
+      );
   }
 
 

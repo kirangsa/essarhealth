@@ -93,7 +93,7 @@ export class JoinUsComponent implements OnInit {
       'cand_user_email': [null, [Validators.required, Validators.pattern(emailregex)]],
       'cand_user_phone': [null, Validators.required],
       'cand_user_location': [null, [Validators.required]],
-      'cand_user_profession': [null, [Validators.required]],
+      'cand_user_type': [null, [Validators.required]],
       'file': [null, [Validators.required]]
     });
     return formGroup;
@@ -117,7 +117,7 @@ export class JoinUsComponent implements OnInit {
 
 
   onSubmit(data: any) {
-    const url = environment.api_url + 'referal-service/joinus';
+    const url = environment.api_url + 'joinus';
     const formData = this.toFormData(data);
     console.log(this.toFormData(data))
     const options = {
@@ -126,8 +126,7 @@ export class JoinUsComponent implements OnInit {
       }
     }
 
-
-    this.http.post(url, formData, options)
+    this.http.post(url, formData)
       .subscribe(
         data => (this.dialog.closeAll(),
           this._snackBar.open('Successfully submitted your request!')),
@@ -137,12 +136,10 @@ export class JoinUsComponent implements OnInit {
 
   toFormData<T>(formValue: any) {
     const formData = new FormData();
-
     for (const key of Object.keys(formValue)) {
       const value = formValue[key];
       formData.append(key, value);
     }
-
     return formData;
   }
 

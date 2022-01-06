@@ -95,8 +95,7 @@ export class ReferComponent implements OnInit {
       'cand_user_email': [null, [Validators.required, Validators.pattern(emailregex)]],
       'cand_user_phone': [null, Validators.required],
       'cand_user_location': [null, [Validators.required]],
-      'cand_user_profession': [null, [Validators.required]],
-      'file': [null, [Validators.required]]
+      'cand_user_type': [null, [Validators.required]]
     });
     return formGroup;
   }
@@ -119,21 +118,36 @@ export class ReferComponent implements OnInit {
 
 
 
-  onSubmit(data: any) {
-    const url = environment.aws_url + 'referal-service/joinus';
-    const formData = this.toFormData(data);
-    console.log(this.toFormData(data))
-    this.http.post(url, formData)
-    .subscribe(
-      data => (this.dialog.closeAll(),
-        this._snackBar.open('Successfully submitted your request!')),
-      error => this._snackBar.open('Something went wrong!')
+  onSubmit(formData: any) {
+    const url = environment.aws_url + 'refer';
+    // const formData = this.toFormData(data);
+    // console.log(this.toFormData(data))
+    const data = {
+      userModel: {
+        firstName: formData.ref_user_firstName,
+        lastName: formData.ref_user_lastName,
+        email: formData.ref_user_email,
+        phone: formData.ref_user_phone
+      },
+      candidateModel: {
+        firstName: formData.cand_user_firstName,
+        lastName: formData.cand_user_lastName,
+        email: formData.cand_user_email,
+        phone: formData.cand_user_phone,
+        type: formData.cand_user_type,
+        location: formData.cand_user_location
+      }
+    }
+    this.http.post(url, data)
+      .subscribe(
+        data => (this.dialog.closeAll(),
+          this._snackBar.open('Successfully submitted your request!')),
+        error => this._snackBar.open('Something went wrong!')
       );
   }
 
   toFormData<T>(formValue: any) {
     const formData = new FormData();
-
     for (const key of Object.keys(formValue)) {
       const value = formValue[key];
       formData.append(key, value);

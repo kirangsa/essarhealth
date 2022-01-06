@@ -21,7 +21,6 @@
             ><span class="ps-2">Location : {{ data.location }}</span>
           </li>
           <li class="list-inline-item d-flex align-items-center flex-row">
-            <i class="bi bi-currency-pound fs-5"></i>
             <span class="ps-2">Salary : {{ data.salary }}</span>
           </li>
         </ul>
@@ -109,15 +108,15 @@
 
       <mat-form-field class="form-element">
         <mat-label>Locum / Permanent</mat-label>
-        <mat-select formControlName="cand_user_profession">
+        <mat-select formControlName="cand_user_type">
           <mat-option *ngFor="let option of contractType" [value]="option">{{
             option
           }}</mat-option>
         </mat-select>
         <mat-error
           *ngIf="
-            !formGroup.controls['cand_user_profession'].valid &&
-            formGroup.controls['cand_user_profession'].touched
+            !formGroup.controls['cand_user_type'].valid &&
+            formGroup.controls['cand_user_type'].touched
           "
         >
           {{ titleAlert }}
